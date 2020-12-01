@@ -1,0 +1,82 @@
+buildscript {
+    ext {
+        springBootVersion = '2.2.6.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.9.RELEASE"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group 'com.npee'
+version '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+
+dependencies {
+
+    /* TEST */
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // testImplementation 'org.springframework.security:spring-security-test'
+
+    /* Web */
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.2.6.RELEASE'
+
+    /* Spring Security, OAuth 2.0 Client */
+    // compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.2.6.RELEASE'
+    // compile group: 'org.springframework.boot', name: 'spring-boot-starter-oauth2-client', version: '2.1.0.RELEASE'
+
+    /* Devtools */
+    // implementation 'org.springframework.boot:spring-boot-devtools'
+
+    /* OAuth2 2.4.0, AutoConfigure */
+    // implementation 'org.springframework.security.oauth:spring-security-oauth2:2.4.0.RELEASE'
+    // implementation 'org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.2.6.RELEASE'
+
+    /* Dynamic Web */
+    implementation 'org.webjars:jquery:3.4.1'
+    implementation 'org.webjars:bootstrap:4.3.1'
+
+    /* View */
+    // compile group: 'javax.servlet', name: 'jstl', version: '1.2'
+    // compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper'
+    // implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+
+    /* Lombok */
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+    /* Database */
+    // runtimeOnly 'com.h2database:h2'
+    runtimeOnly'mysql:mysql-connector-java'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // After configuring DB connection
+
+    /* Swagger */
+    implementation 'io.springfox:springfox-swagger2:2.6.1'
+    implementation 'io.springfox:springfox-swagger-ui:2.6.1'
+    // compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+    // compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+
+    /* YAML */
+    implementation 'net.rakugakibox.util:yaml-resource-bundle:1.1'
+
+    /* JWT */
+    // implementation 'io.jsonwebtoken:jjwt:0.9.1'
+
+    /* GSON */
+    // implementation 'com.google.code.gson:gson'
+
+}

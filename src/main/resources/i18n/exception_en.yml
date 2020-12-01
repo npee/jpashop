@@ -1,0 +1,22 @@
+# exception_en.yml
+unKnown:
+  code: "-9999"
+  message : "An unknown error has occurred."
+userNotExists:
+  code: "-1000"
+  message: "The user does NOT exist."
+signinFailed:
+  code: "-1001"
+  message: "Your ID or PASSWORD is NOT correct."
+entryPointException:
+  code: "-1002"
+  message: "You do NOT have permission to access this resource."
+accessDenied:
+  code: "-1003"
+  message: "A resource that can not be accessed with the privileges it has."
+commumicationError:
+  code: "-1004"
+  message: "An error occurred during communication."
+userExists:
+  code: "-1005"
+  message: "The user already exists."
