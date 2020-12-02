@@ -52,7 +52,7 @@ dependencies {
     /* View */
     // compile group: 'javax.servlet', name: 'jstl', version: '1.2'
     // compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper'
-    // implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
 
     /* Lombok */
