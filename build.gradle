@@ -39,7 +39,7 @@ dependencies {
     // compile group: 'org.springframework.boot', name: 'spring-boot-starter-oauth2-client', version: '2.1.0.RELEASE'
 
     /* Devtools */
-    // implementation 'org.springframework.boot:spring-boot-devtools'
+    implementation 'org.springframework.boot:spring-boot-devtools'
 
     /* OAuth2 2.4.0, AutoConfigure */
     // implementation 'org.springframework.security.oauth:spring-security-oauth2:2.4.0.RELEASE'
