@@ -14,7 +14,7 @@ public class Delivery {
     @Column(name = "delivery_id")
     private Long id;
 
-    @OneToOne(mappedBy = "delivery") // 일대일 관계에서는 주인을 원하는 곳에 두면 된다. 자주 엑세스하는 곳에 두면 좋다.
+    @OneToOne(mappedBy = "delivery", fetch = FetchType.LAZY) // 일대일 관계에서는 주인을 원하는 곳에 두면 된다. 자주 엑세스하는 곳에 두면 좋다.
     private Order order;
 
     @Embedded
