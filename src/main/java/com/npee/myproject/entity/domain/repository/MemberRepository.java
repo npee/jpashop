@@ -13,11 +13,11 @@ public class MemberRepository {
     @PersistenceContext
     private EntityManager em;
 
-    private void save(Member member) {
+    public void save(Member member) {
         em.persist(member);
     }
 
-    private Member findOne(Long id) {
+    public Member findOne(Long id) {
         return em.find(Member.class, id);
     }
 
