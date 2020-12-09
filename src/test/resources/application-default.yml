@@ -1,0 +1,12 @@
+spring:
+  profiles:
+    include:
+      - test
+  messages:
+    basename: i18n/exception
+    encoding: UTF-8
+
+logging:
+  level:
+    # org.springframework.security: DEBUG
+    org.hibernate.SQL: debug

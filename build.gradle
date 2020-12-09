@@ -61,7 +61,7 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.12'
 
     /* Database */
-    // runtimeOnly 'com.h2database:h2'
+    testCompile group: 'com.h2database', name: 'h2', version: '1.4.199'
     runtimeOnly'mysql:mysql-connector-java'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // After configuring DB connection
 
