@@ -2,6 +2,8 @@ package com.npee.myproject.service;
 
 import com.npee.myproject.entity.domain.Address;
 import com.npee.myproject.entity.domain.Member;
+import com.npee.myproject.entity.domain.Order;
+import com.npee.myproject.entity.domain.OrderStatus;
 import com.npee.myproject.entity.domain.item.Book;
 import com.npee.myproject.entity.domain.item.Item;
 import com.npee.myproject.entity.domain.repository.OrderRepository;
@@ -50,7 +52,10 @@ public class OrderServiceTest {
         Long orderId = orderService.order(member.getId(), book.getId(), orderCount);
 
         // then
-        orderRepository.findOne(orderId);
+        Order getOrder = orderRepository.findOne(orderId);
+
+        assertEquals("상품 주문시 상태는 ORDER", OrderStatus.ORDER, getOrder.getStatus());
+
     }
     
     @Test
