@@ -1,5 +1,6 @@
 package com.npee.myproject.service;
 
+import com.npee.myproject.entity.domain.item.Book;
 import com.npee.myproject.entity.domain.item.Item;
 import com.npee.myproject.entity.domain.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,15 @@ public class ItemService {
     @Transactional
     public void saveItem(Item item) {
         itemRepository.save(item);
+    }
+
+    @Transactional
+    public void updateItem(Long itemId, Book param) {
+        Item findItem = itemRepository.findOne(itemId); // 영속 상태
+        findItem.setPrice(param.getPrice());
+        findItem.setName(param.getName());
+        findItem.setStockQuantity(param.getStockQuantity());
+        // Commit 시점 -> 변경 감지 -> Update
     }
 
     public List<Item> findItems() {
