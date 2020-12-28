@@ -8,6 +8,7 @@ import com.npee.myproject.entity.domain.item.Item;
 import com.npee.myproject.entity.domain.repository.ItemRepository;
 import com.npee.myproject.entity.domain.repository.MemberRepository;
 import com.npee.myproject.entity.domain.repository.OrderRepository;
+import com.npee.myproject.entity.domain.repository.OrderSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -66,9 +67,8 @@ public class OrderService {
     /**
      * 검색
      */
-    /*
     public List<Order> findOrders(OrderSearch orderSearch) {
-        return orderRepository.findAll(orderSearch);
+        return orderRepository.findAllByCriteria(orderSearch);
     }
-    */
+
 }
