@@ -1,4 +1,4 @@
-package com.npee.myproject.entity.domain.repository;
+package com.npee.myproject.entity.domain.repository.order.simplequery;
 
 import com.npee.myproject.entity.domain.Address;
 import com.npee.myproject.entity.domain.Order;
