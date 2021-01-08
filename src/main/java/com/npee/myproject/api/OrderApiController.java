@@ -37,8 +37,8 @@ public class OrderApiController {
     @GetMapping("/api/v2/orders")
     public List<OrderDto> ordersV2() {
         List<Order> orders = orderRepository.findAllByCriteria(new OrderSearch());
-        List<OrderDto> collect = orders.stream().map(o -> new OrderDto(o)).collect(Collectors.toList());
-        return collect;
+        List<OrderDto> result = orders.stream().map(o -> new OrderDto(o)).collect(Collectors.toList());
+        return result;
     }
 
     @Getter
@@ -49,7 +49,7 @@ public class OrderApiController {
         private LocalDateTime orderDate;
         private OrderStatus orderStatus;
         private Address address;
-        private List<OrderItem> orderItems;
+        private List<OrderItemDto> orderItems;
 
         public OrderDto(Order order) {
             this.orderId = order.getId();
@@ -57,8 +57,22 @@ public class OrderApiController {
             this.orderDate = order.getOrderDate();
             this.orderStatus = order.getStatus();
             this.address = order.getDelivery().getAddress();
-            order.getOrderItems().forEach(o -> o.getItem().getName()); // 강제 초기화
-            this.orderItems = order.getOrderItems();
+            this.orderItems = order.getOrderItems().stream()
+                .map(orderItem -> new OrderItemDto(orderItem)).collect(Collectors.toList());
+        }
+    }
+
+    @Getter
+    static class OrderItemDto {
+
+        private String itemName; // 상품명
+        private int orderPrice; // 주문 가격
+        private int count; // 주문 수량
+
+        public OrderItemDto(OrderItem orderItem) {
+            this.itemName = orderItem.getItem().getName();
+            this.orderPrice = orderItem.getOrderPrice();
+            this.count = orderItem.getCount();
         }
     }
 }
