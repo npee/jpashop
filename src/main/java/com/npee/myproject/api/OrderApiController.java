@@ -7,7 +7,6 @@ import com.npee.myproject.entity.domain.OrderStatus;
 import com.npee.myproject.entity.domain.repository.OrderRepository;
 import com.npee.myproject.entity.domain.repository.OrderSearch;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,6 +43,13 @@ public class OrderApiController {
     @GetMapping("/api/v3/orders")
     public List<OrderDto> ordersV3() {
         List<Order> orders = orderRepository.findAllWithItem();
+        List<OrderDto> result = orders.stream().map(o -> new OrderDto(o)).collect(Collectors.toList());
+        return result;
+    }
+
+    @GetMapping("/api/v3.1/orders")
+    public List<OrderDto> ordersV3_page() {
+        List<Order> orders = orderRepository.findAllWithMemberDelivery(); // 페이징에 영향 주지 않음
         List<OrderDto> result = orders.stream().map(o -> new OrderDto(o)).collect(Collectors.toList());
         return result;
     }
