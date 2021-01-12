@@ -4,9 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.npee.myproject.entity.domain.item.Item;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
 
+@BatchSize(size = 1000)
 @Entity
 @Getter
 @Setter

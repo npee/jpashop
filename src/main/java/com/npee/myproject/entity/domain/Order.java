@@ -2,6 +2,7 @@ package com.npee.myproject.entity.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -22,6 +23,7 @@ public class Order {
     @JoinColumn(name = "member_id") // 연관관계의 주인. 주인쪽을 변경하면 업데이트가 일어남
     private Member member;
 
+    @BatchSize(size = 1000)
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 
