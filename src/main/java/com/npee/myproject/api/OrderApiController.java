@@ -6,6 +6,8 @@ import com.npee.myproject.entity.domain.OrderItem;
 import com.npee.myproject.entity.domain.OrderStatus;
 import com.npee.myproject.entity.domain.repository.OrderRepository;
 import com.npee.myproject.entity.domain.repository.OrderSearch;
+import com.npee.myproject.entity.domain.repository.order.query.OrderQueryDto;
+import com.npee.myproject.entity.domain.repository.order.query.OrderQueryRepository;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +22,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class OrderApiController {
     private final OrderRepository orderRepository;
+    private final OrderQueryRepository orderQueryRepository;
 
     @GetMapping("/api/v1/orders")
     public List<Order> ordersV1() {
@@ -54,6 +57,12 @@ public class OrderApiController {
         List<Order> orders = orderRepository.findAllWithMemberDelivery(offset, limit);
         List<OrderDto> result = orders.stream().map(o -> new OrderDto(o)).collect(Collectors.toList());
         return result;
+    }
+
+    @GetMapping("/api/v4/orders")
+    public List<OrderQueryDto> ordersV4() {
+        return orderQueryRepository.findOrderQueryDtos();
+
     }
 
     @Getter
