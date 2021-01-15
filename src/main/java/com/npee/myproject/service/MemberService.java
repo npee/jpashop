@@ -1,6 +1,7 @@
 package com.npee.myproject.service;
 
 import com.npee.myproject.entity.domain.Member;
+import com.npee.myproject.entity.domain.repository.MemberRepository;
 import com.npee.myproject.entity.domain.repository.MemberRepositoryOld;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MemberService {
 
-    private final MemberRepositoryOld memberRepositoryOld;
+    // private final MemberRepositoryOld memberRepositoryOld;
+    private final MemberRepository memberRepository;
 
     /**
      * 회원 가입
@@ -23,13 +25,13 @@ public class MemberService {
     @Transactional
     public Long join(Member member) {
         validateDuplicateMember(member); // 중복 회원 검출
-        memberRepositoryOld.save(member);
+        memberRepository.save(member);
         return member.getId();
     }
 
     private void validateDuplicateMember(Member member) {
         // exception
-        List<Member> findMembers = memberRepositoryOld.findByName(member.getName());
+        List<Member> findMembers = memberRepository.findByName(member.getName());
         if (!findMembers.isEmpty()) {
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         }
@@ -40,7 +42,7 @@ public class MemberService {
      * @return
      */
     public List<Member> findMembers() {
-        return memberRepositoryOld.findAll();
+        return memberRepository.findAll();
     }
 
     /**
@@ -49,12 +51,12 @@ public class MemberService {
      * @return
      */
     public Member findMember(Long memberId) {
-        return memberRepositoryOld.findOne(memberId);
+        return memberRepository.findById(memberId).get(); // findOne은 findById로 변경됨 (Optional 반환)
     }
 
     @Transactional
     public void update(Long id, String name) {
-        Member member = memberRepositoryOld.findOne(id);
+        Member member = memberRepository.findById(id).get();
         member.setName(name);
     }
 }
