@@ -6,7 +6,7 @@ import com.npee.myproject.entity.domain.Order;
 import com.npee.myproject.entity.domain.OrderItem;
 import com.npee.myproject.entity.domain.item.Item;
 import com.npee.myproject.entity.domain.repository.ItemRepository;
-import com.npee.myproject.entity.domain.repository.MemberRepository;
+import com.npee.myproject.entity.domain.repository.MemberRepositoryOld;
 import com.npee.myproject.entity.domain.repository.OrderRepository;
 import com.npee.myproject.entity.domain.repository.OrderSearch;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,7 @@ import java.util.List;
 public class OrderService {
 
     private final OrderRepository orderRepository;
-    private final MemberRepository memberRepository;
+    private final MemberRepositoryOld memberRepositoryOld;
     private final ItemRepository itemRepository;
 
     /**
@@ -30,7 +30,7 @@ public class OrderService {
     @Transactional
     public Long order(Long memberId, Long itemId, int count) {
         // 엔티티 조회
-        Member member = memberRepository.findOne(memberId);
+        Member member = memberRepositoryOld.findOne(memberId);
         Item item = itemRepository.findOne(itemId);
 
         // 배송정보 생성
