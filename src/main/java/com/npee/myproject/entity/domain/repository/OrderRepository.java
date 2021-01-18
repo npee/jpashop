@@ -21,10 +21,15 @@ import static com.npee.myproject.entity.domain.QMember.member;
 import static com.npee.myproject.entity.domain.QOrder.order;
 
 @Repository
-@RequiredArgsConstructor
 public class OrderRepository {
 
     private final EntityManager em;
+    private final JPAQueryFactory query;
+
+    public OrderRepository(EntityManager em) {
+        this.em = em;
+        this.query = new JPAQueryFactory(em);
+    }
 
     public void save(Order order) {
         em.persist(order);
@@ -102,8 +107,6 @@ public class OrderRepository {
     }
 
     public List<Order> findAll(OrderSearch orderSearch) {
-        JPAQueryFactory query = new JPAQueryFactory(em);
-
         return query.select(order)
                 .from(order)
                 .join(order.member, member)
