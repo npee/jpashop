@@ -17,6 +17,9 @@ import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.npee.myproject.entity.domain.QMember.member;
+import static com.npee.myproject.entity.domain.QOrder.order;
+
 @Repository
 @RequiredArgsConstructor
 public class OrderRepository {
@@ -100,8 +103,6 @@ public class OrderRepository {
 
     public List<Order> findAll(OrderSearch orderSearch) {
         JPAQueryFactory query = new JPAQueryFactory(em);
-        QOrder order = QOrder.order;
-        QMember member = QMember.member;
 
         return query.select(order)
                 .from(order)
@@ -115,7 +116,7 @@ public class OrderRepository {
         if (! StringUtils.hasText(memberName)) {
             return null;
         }
-        return QMember.member.name.like(memberName);
+        return member.name.like(memberName);
     }
 
     // 동적 쿼리 조건
@@ -123,7 +124,7 @@ public class OrderRepository {
         if (statusCond == null) {
             return null;
         }
-        return QOrder.order.status.eq(statusCond);
+        return order.status.eq(statusCond);
     }
 
     public List<Order> findAllWithMemberDelivery() {
